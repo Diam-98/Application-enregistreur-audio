@@ -9,7 +9,11 @@
         android:id="@+id/recorderFragment"
         android:name="com.diam.applicationenregistreuraudio.RecorderFragment"
         android:label="fragment_recorder"
-        tools:layout="@layout/fragment_recorder" />
+        tools:layout="@layout/fragment_recorder" >
+        <action
+            android:id="@+id/action_recorderFragment_to_audioListFragment"
+            app:destination="@id/audioListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/audioListFragment"
         android:name="com.diam.applicationenregistreuraudio.AudioListFragment"
