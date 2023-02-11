@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_recorder" >
         <action
             android:id="@+id/action_recorderFragment_to_audioListFragment"
-            app:destination="@id/audioListFragment" />
+            app:destination="@id/audioListFragment"
+            app:exitAnim="@anim/fade_out"
+            app:enterAnim="@anim/slide_in"/>
     </fragment>
     <fragment
         android:id="@+id/audioListFragment"

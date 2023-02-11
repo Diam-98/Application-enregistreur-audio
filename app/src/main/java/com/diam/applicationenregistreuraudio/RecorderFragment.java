@@ -1,5 +1,6 @@
 package com.diam.applicationenregistreuraudio;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +19,8 @@ public class RecorderFragment extends Fragment {
 
     private NavController navController;
     private ImageView listButton;
-    Button recordButton;
+    private ImageView recordButton;
+    private boolean isRecording = false;
 
     public RecorderFragment() {
         // Required empty public constructor
@@ -40,21 +42,23 @@ public class RecorderFragment extends Fragment {
         recordButton = view.findViewById(R.id.record_btn);
 
         listButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public void onClick(View v) {
-                switch (v.getId()){
-                    case R.id.record_list_icon:
-                        navController.navigate(R.id.action_recorderFragment_to_audioListFragment);
-                        break;
-                    case R.id.record_btn:
-                        if (isRecording()){
+                navController.navigate(R.id.action_recorderFragment_to_audioListFragment);
+            }
+        });
 
-                        }else{
-                            if(checkPermissions()){
-
-                            }
-                        }
-                        break;
+        recordButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("UseCompatLoadingForDrawables")
+            @Override
+            public void onClick(View v) {
+                if (isRecording){
+                    recordButton.setImageDrawable(getResources().getDrawable(R.drawable.black_music_note_icon, null));
+                    isRecording = false;
+                }else{
+                    recordButton.setImageDrawable(getResources().getDrawable(R.drawable.record_logo, null));
+                    isRecording = true;
                 }
             }
         });
