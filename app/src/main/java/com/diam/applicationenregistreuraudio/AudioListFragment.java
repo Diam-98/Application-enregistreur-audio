@@ -99,6 +99,7 @@ public class AudioListFragment extends Fragment implements AudioRecyclerAdapter.
     @SuppressLint("UseCompatLoadingForDrawables")
     private void playAudio(File file){
         mediaPlayer = new MediaPlayer();
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         try {
             mediaPlayer.setDataSource(fileToPlay.getAbsolutePath());
             mediaPlayer.prepare();
@@ -113,6 +114,14 @@ public class AudioListFragment extends Fragment implements AudioRecyclerAdapter.
         file_name.setText(fileToPlay.getName());
         title.setText("En lecture");
         is_playing = true;
+
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                stopAudio();
+                title.setText("Fin de l'audio");
+            }
+        });
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
